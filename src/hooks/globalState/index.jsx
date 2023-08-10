@@ -13,12 +13,19 @@ export function useGlobalState() {
 export function GlobalStateProvider({children}) {
     const [data, dispatch] = useReducer((prevState, action) => {
         switch (action.type) {
-            case 'GET':
+            case 'GET': {
                 const tempData = {...prevState}
                 tempData[action.resource] = action.data
                 return tempData
-            default:
+            }    
+            case 'DELETE': {
+                const tempData = {...prevState}
+                tempData[action.resource].splice(action.data, 1)
+                return tempData
+            }    
+            default: {
                 throw new Error(errorList.INVALID_DATA_ACTION)
+            }
         }
     }, {})
     return (
