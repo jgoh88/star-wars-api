@@ -6,6 +6,7 @@ import errorList from "../../configs/errors"
 import { Container, Row, Col } from "react-bootstrap"
 import siteResources from "../../configs/siteResourceConfig"
 import ResourceTable from "../ResourceTable"
+import ResourceAddModal from "../ResourceAddModal"
 
 export default function ResourcePage() {
     const {resource} = useParams()
@@ -29,7 +30,7 @@ export default function ResourcePage() {
                 page += 1
                 const res = await axiosSWAPI.get(`/${resource}/?page=${page}`)
                 fetchedData.push(...res.data.results)
-                dispatch({type: 'GET', resource: resource, data: fetchedData})
+                dispatch({type: 'UPDATE', resource: resource, data: fetchedData})
                 if (res.data.next === null) {
                     isNextPageAvailable = false
                 }
@@ -46,6 +47,11 @@ export default function ResourcePage() {
             <Row className="mt-3 text-center">
                 <Col>
                     <h1>{siteResources[resource].label}</h1>
+                </Col>
+            </Row>
+            <Row>
+                <Col className="d-flex justify-content-end">
+                    {!isFetching && <ResourceAddModal resource={resource} />}
                 </Col>
             </Row>
             <Row className="mt-3">

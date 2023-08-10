@@ -19,10 +19,10 @@ export default function ResourceTable({isFetching, resource}) {
             <tbody>
                 {data[resource] && data[resource].map((dt, idx) => {
                     return (
-                        <tr>
+                        <tr key={idx}>
                             <td>{idx+1}</td>
                             {siteResources[resource].fields.map(field => 
-                                <td>{dt[field.name]}</td>
+                                <td key={idx+field.name}>{dt[field.name]}</td>
                             )}
                             <td>
                                 <ResourceDeleteButton resource={resource} index={idx} />

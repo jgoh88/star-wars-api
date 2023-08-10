@@ -11,7 +11,9 @@ export default function ResourceDeleteButton({resource, index}) {
     const handleShow = () => setShow(true)
     const handleDelete =() => {
         handleClose()
-        dispatch({type: 'DELETE', resource: resource, data: index})
+        const tempData = [...data[resource]]
+        tempData.splice(index, 1)
+        dispatch({type: 'UPDATE', resource: resource, data: tempData})
     }
 
     return (

@@ -3,6 +3,8 @@ import errorList from "../../configs/errors";
 
 const GlobalStateContext = createContext()
 
+
+
 export function useGlobalState() {
     if (!GlobalStateContext) {
         throw new Error(errorList.NOT_IN_GLOBALPROVIDER)
@@ -10,24 +12,27 @@ export function useGlobalState() {
     return useContext(GlobalStateContext)
 }
 
-export function GlobalStateProvider({children}) {
-    const [data, dispatch] = useReducer((prevState, action) => {
-        switch (action.type) {
-            case 'GET': {
-                const tempData = {...prevState}
-                tempData[action.resource] = action.data
-                return tempData
-            }    
-            case 'DELETE': {
-                const tempData = {...prevState}
-                tempData[action.resource].splice(action.data, 1)
-                return tempData
-            }    
-            default: {
-                throw new Error(errorList.INVALID_DATA_ACTION)
-            }
+function reducer(prevState, action) {
+    switch (action.type) {
+        case 'UPDATE': {
+            const tempData = {...prevState}
+            tempData[action.resource] = action.data
+            return tempData
         }
-    }, {})
+        // case 'POST': {
+        //     return action.data  
+        // }    
+        // case 'DELETE': {
+        //     return action.data
+        // }    
+        default: {
+            throw new Error(errorList.INVALID_DATA_ACTION)
+        }
+    }
+}
+
+export function GlobalStateProvider({children}) {
+    const [data, dispatch] = useReducer(reducer, {})
     return (
         <GlobalStateContext.Provider value={{data, dispatch}}>
             {children}
