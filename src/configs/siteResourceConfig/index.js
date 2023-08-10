@@ -6,7 +6,7 @@ const siteResources = [
         description: "Explore the characters in Star Wars franchise",
     },
     {
-        resource: "planet",
+        resource: "planets",
         navTitle: "Planets",
         label: "Star Wars Planets",
         description: "Explore the planets in Star Wars franchise",
