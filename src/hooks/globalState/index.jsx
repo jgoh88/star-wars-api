@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import errorList from "../../configs/error";
+import errorList from "../../configs/errors";
 
 const GlobalStateContext = createContext()
 

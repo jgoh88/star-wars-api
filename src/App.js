@@ -1,14 +1,17 @@
 import NavBar from "./components/NavBar";
+import { GlobalStateProvider } from "./hooks/globalState";
 
 const { BrowserRouter, Routes } = require("react-router-dom");
 
 function App() {
   return (
     <BrowserRouter>
-      <NavBar />
-      <Routes>
-        
-      </Routes>
+      <GlobalStateProvider>
+        <NavBar />
+        <Routes>
+
+        </Routes>
+      </GlobalStateProvider>
     </BrowserRouter>
   );
 }
