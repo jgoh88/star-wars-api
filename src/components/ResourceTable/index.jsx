@@ -1,6 +1,6 @@
 import siteResources from "../../configs/siteResourceConfig"
 import { useGlobalState } from "../../hooks/globalState"
-import { Table } from "react-bootstrap"
+import { Table, Spinner } from "react-bootstrap"
 
 export default function ResourceTable({isFetching, resource}) {
     const {data} = useGlobalState()
@@ -30,7 +30,9 @@ export default function ResourceTable({isFetching, resource}) {
                     )
                 })}
                 {isFetching && <tr>
-                    
+                    <td colSpan={siteResources[resource].fields.length+2} className="text-center">
+                        <Spinner animation="border" />
+                    </td>
                 </tr>}
             </tbody>
         </Table>
