@@ -1,8 +1,11 @@
-import { useParams } from "react-router"
+import { useParams } from "react-router-dom"
 import { useGlobalState } from "../../hooks/globalState"
 import { useEffect, useState } from "react"
 import axiosSWAPI from "../../configs/axiosSWAPI"
 import errorList from "../../configs/errors"
+import { Container, Row, Col } from "react-bootstrap"
+import siteResources from "../../configs/siteResourceConfig"
+import ResourceTable from "../ResourceTable"
 
 export default function ResourcePage() {
     const {resource} = useParams()
@@ -39,6 +42,17 @@ export default function ResourcePage() {
     }
 
     return (
-        <></>
+        <Container>
+            <Row className="mt-3 text-center">
+                <Col>
+                    <h1>{siteResources[resource].label}</h1>
+                </Col>
+            </Row>
+            <Row className="mt-3">
+                <Col>
+                    <ResourceTable isFetching={isFetching} resource={resource} />
+                </Col>
+            </Row>
+        </Container>
     )
 }

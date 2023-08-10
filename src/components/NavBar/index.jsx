@@ -15,9 +15,9 @@ export default function NavBar() {
                         <LinkContainer to='/'>
                             <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
-                        {siteResources.map(siteResource =>
-                            <LinkContainer key={siteResource.resource} to={`/${siteResource.resource}`}>
-                                <Nav.Link>{siteResource.navTitle}</Nav.Link>
+                        {Object.keys(siteResources).map(resource =>
+                            <LinkContainer key={resource} to={`/${resource}`}>
+                                <Nav.Link>{siteResources[resource].navTitle}</Nav.Link>
                             </LinkContainer>
                         )}
                     </Nav>

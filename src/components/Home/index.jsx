@@ -11,17 +11,17 @@ export default function Home() {
                 </Col>
             </Row>
             <Row>
-                {siteResources.map(siteResource =>
-                    <LinkContainer to={`/${siteResource.resource}`}>
-                        <Col xs={12} md={6} lg={4} key={siteResource.resource} className="mt-3">
+                {Object.keys(siteResources).map(resource =>
+                    <LinkContainer key={resource} to={`/${resource}`}>
+                        <Col xs={12} md={6} lg={4} className="mt-3">
                             <Card 
                                 style={{height: 'min-content', minHeight: '20vh', cursor: "pointer"}} 
                                 bg={"dark"} 
                                 variant={'dark'} 
                             >
                                 <Card.Body>
-                                    <Card.Title className="text-white">{siteResource.navTitle}</Card.Title>
-                                    <Card.Text className="text-white mt-3">{siteResource.description}</Card.Text>
+                                    <Card.Title className="text-white">{siteResources[resource].navTitle}</Card.Title>
+                                    <Card.Text className="text-white mt-3">{siteResources[resource].description}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
