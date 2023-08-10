@@ -1,4 +1,4 @@
-const resources = [
+const siteResources = [
     {
         resource: "people",
         navTitle: "Characters",
@@ -13,4 +13,4 @@ const resources = [
     },
 ]
 
-export default resources
+export default siteResources
