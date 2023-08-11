@@ -13,6 +13,7 @@ export function useGlobalState() {
 }
 
 function reducer(prevState, action) {
+    //If have time, to explore on having different action type for various changes, e.g. add, edit, delete records
     switch (action.type) {
         case 'UPDATE': {
             const tempData = {...prevState}

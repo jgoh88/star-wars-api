@@ -21,6 +21,8 @@ export default function ResourcePage() {
     }, [resource])
 
     async function fetchData() {
+        // If have time, to explore better way of getting the data, e.g. by having pagination so that edit and delete can be 
+        // performed while data is being fetched
         setIsFetching(true)
         try {
             const fetchedData = []

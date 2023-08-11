@@ -8,9 +8,10 @@ function validate(values) {
     // validation rules to be added if required
 }
 
-export default function ResourceAddModal({resource, className}) {
+export default function ResourceEditModal({resource, index, className}) {
+    const {data, dispatch} = useGlobalState()
     const initialFormState = siteResources[resource].fields.reduce((t, c) => {
-        t[c.name] = ''
+        t[c.name] = data[resource][index][c.name]
         return t
     }, {})
     const formik = useFormik({
@@ -21,7 +22,6 @@ export default function ResourceAddModal({resource, className}) {
         },
     })
     const [show, setShow] = useState(false)
-    const {data, dispatch} = useGlobalState()
 
     const handleClose = () => {
         setShow(false)
@@ -30,19 +30,19 @@ export default function ResourceAddModal({resource, className}) {
     const handleShow = () => setShow(true)
     const handleSubmit = (formValues) => {
         const tempData = [...data[resource]]
-        tempData.push(formValues)
+        tempData[index] = {...formValues}
         dispatch({type: 'UPDATE', resource: resource, data: tempData})
-        handleClose()
+        setShow(false)
     }
 
     return (
         <>
-            <Button variant="success" onClick={handleShow} className={className}>
-                Add {siteResources[resource].navTitle}
+            <Button variant="primary" onClick={handleShow} className={className}>
+                    Edit
             </Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add New {siteResources[resource].navTitle}</Modal.Title>
+                    <Modal.Title>Edit {data[resource][index][siteResources[resource].fields[0].name]}</Modal.Title>
                 </Modal.Header>
                 <Form onSubmit={formik.handleSubmit}>
                     <Modal.Body>
@@ -59,14 +59,14 @@ export default function ResourceAddModal({resource, className}) {
                                 </Form.Group>
                             )
                         })}
-                        (Note: Any added records are only effective until you refresh the page. New records will be added at the end)
+                        (Note: Any edited records are only effective until you refresh the page.)
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
                         <Button variant="primary" type="submit">
-                            Add new record
+                            Save changes
                         </Button>
                     </Modal.Footer>
                 </Form>

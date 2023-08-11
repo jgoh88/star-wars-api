@@ -22,12 +22,12 @@ const siteResources = {
             {
                 name: "height",
                 label: "Height",
-                type: "number",
+                type: "text",
             },
             {
                 name: "mass",
                 label: "Weight",
-                type: "number",
+                type: "text",
             },
             {
                 name: "hair_color",
@@ -54,7 +54,7 @@ const siteResources = {
             {
                 name: "diameter",
                 label: "Diameter",
-                type: "number",
+                type: "text",
             },
             {
                 name: "climate",
@@ -69,12 +69,12 @@ const siteResources = {
             {
                 name: "surface_water",
                 label: "Surface Water",
-                type: "number",
+                type: "text",
             },
             {
                 name: "population",
                 label: "Population",
-                type: "number",
+                type: "text",
             },
         ]
     },

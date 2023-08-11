@@ -3,7 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import { useGlobalState } from "../../hooks/globalState";
 import siteResources from "../../configs/siteResourceConfig";
 
-export default function ResourceDeleteButton({resource, index}) {
+export default function ResourceDeleteModal({resource, index, className}) {
     const [show, setShow] = useState(false)
     const {data, dispatch} = useGlobalState()
 
@@ -18,7 +18,7 @@ export default function ResourceDeleteButton({resource, index}) {
 
     return (
         <>
-            <Button variant="danger" onClick={handleShow}>
+            <Button variant="danger" onClick={handleShow} className={className}>
                 Delete
             </Button>
             <Modal show={show} onHide={handleClose}>

@@ -4,7 +4,7 @@ import siteResources from "../../configs/siteResourceConfig"
 
 export default function NavBar() {
     return (
-        <Navbar expand="lg" bg={"dark"} variant={'dark'}>
+        <Navbar expand="lg" bg={"dark"} variant={'dark'} sticky="top">
             <Container>
                 <LinkContainer to='/'>
                     <Navbar.Brand className="fw-medium">SW API</Navbar.Brand>

@@ -1,7 +1,8 @@
 import siteResources from "../../configs/siteResourceConfig"
 import { useGlobalState } from "../../hooks/globalState"
 import { Table, Spinner } from "react-bootstrap"
-import ResourceDeleteButton from "../ResourceDeleteButton"
+import ResourceDeleteModal from "../ResourceDeleteButton"
+import ResourceEditModal from "../ResourceEditModal"
 
 export default function ResourceTable({isFetching, resource}) {
     const {data} = useGlobalState()
@@ -25,7 +26,8 @@ export default function ResourceTable({isFetching, resource}) {
                                 <td key={idx+field.name}>{dt[field.name]}</td>
                             )}
                             <td>
-                                <ResourceDeleteButton resource={resource} index={idx} />
+                                <ResourceEditModal resource={resource} index={idx} className="me-2" />
+                                <ResourceDeleteModal resource={resource} index={idx} />
                             </td>
                         </tr>
                     )
