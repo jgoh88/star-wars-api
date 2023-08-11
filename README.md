@@ -21,3 +21,5 @@ $ npm start  # this will start tool at localhost:3000
 ```
 ### Editing Resource for the Site
 The base tool itself is configured to display information on resources for SW characters and planets. You can edit the file within src/configs/siteResourceConfig folder to add or change the resources for the site.
+
+The first field for the resource must be the name/title of the records (e.g. for characters, it is the field name which points to the name of the character). Additional fields that are based on url is not supported.
