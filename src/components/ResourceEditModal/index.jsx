@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { useGlobalState } from "../../hooks/globalState";
 import siteResources from "../../configs/siteResourceConfig";
@@ -14,8 +14,10 @@ export default function ResourceEditModal({resource, index, className}) {
         t[c.name] = data[resource][index][c.name]
         return t
     }, {})
+    
     const formik = useFormik({
         initialValues: initialFormState,
+        enableReinitialize: true,
         validate,
         onSubmit: values => {
             handleSubmit(values)
